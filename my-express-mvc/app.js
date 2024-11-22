@@ -11,6 +11,7 @@ var usersRouter = require('./app_server/routes/users');
 var mhsRouter = require("./app_server/routes/mahasiswa");
 var housingRouter = require('./app_server/routes/housing');
 
+
 //pisah router
 var mhsRouter = require('./app_server/routes/mahasiswa');
 
@@ -26,10 +27,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use ((reg, res, next)=>{
+  res.header("Access-Controler-Allow-Origin","*");//Allow all domains
+  next();
+})
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/mahasiswa', mhsRouter);
 app.use('/housing', housingRouter);
+// letakan di bawah use Router
+/*app.use("/housing",(req,res,next)=>{
+  res.header("Access-Control-Allow-Origin","*");
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

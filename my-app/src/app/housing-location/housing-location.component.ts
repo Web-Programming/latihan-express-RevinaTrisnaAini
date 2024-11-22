@@ -19,4 +19,5 @@ import { RouterModule } from '@angular/router';
 })
 export class HousingLocationComponent {
   @Input() housingLocation!: HousingLocation;
+  baseUrl = 'https://angular.io/assets/images/tutorioals/faa';
 }
